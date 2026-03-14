@@ -29,6 +29,16 @@ const router = createRouter({
               component: () => import('../views/ProductList.vue')
             },
             {
+              path: 'add',
+              name: 'ProductAdd',
+              component: () => import('../views/ProductForm.vue')
+            },
+            {
+              path: 'edit/:id',
+              name: 'ProductEdit',
+              component: () => import('../views/ProductForm.vue')
+            },
+            {
               path: 'categories',
               redirect: { path: '/category' }
             }
