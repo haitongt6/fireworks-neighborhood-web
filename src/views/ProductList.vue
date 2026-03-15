@@ -95,6 +95,7 @@
           </select>
         </div>
         <router-link
+          v-if="userStore.hasPermission('pms:product:add')"
           to="/products/add"
           class="flex items-center justify-center gap-2 bg-orange-500 text-white px-6 py-2.5 rounded-2xl font-bold hover:bg-orange-600 transition-all shadow-lg shadow-orange-200"
         >
@@ -166,17 +167,13 @@
                 <span class="text-sm text-gray-600">{{ formatCreateTime(product.createTime) }}</span>
               </td>
               <td class="px-8 py-5 text-right">
-                <div class="flex items-center justify-end gap-2">
-                  <router-link
-                    :to="`/products/edit/${product.id}`"
-                    class="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all inline-block"
-                  >
-                    <Edit2 :size="18" />
-                  </router-link>
-                  <button class="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all">
-                    <Trash2 :size="18" />
-                  </button>
-                </div>
+                <router-link
+                  v-if="userStore.hasPermission('pms:product:edit')"
+                  :to="`/products/edit/${product.id}`"
+                  class="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all inline-block"
+                >
+                  <Edit2 :size="18" />
+                </router-link>
               </td>
             </tr>
           </tbody>
@@ -220,11 +217,13 @@
 
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue'
-import { Search, Plus, Edit2, Trash2, ChevronLeft, ChevronRight } from 'lucide-vue-next'
+import { Search, Plus, Edit2, ChevronLeft, ChevronRight } from 'lucide-vue-next'
+import { useUserStore } from '@/stores/user'
 import { listCategories } from '@/api/category'
 import { listProducts, type PmsProductListVO, type PmsProductQueryParam } from '@/api/product'
 import type { PmsProductCategory } from '@/api/category'
 
+const userStore = useUserStore()
 const categories = ref<PmsProductCategory[]>([])
 const products = ref<PmsProductListVO[]>([])
 const total = ref(0)

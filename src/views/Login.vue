@@ -116,6 +116,8 @@ const handleLogin = async () => {
     const encryptedPassword = await encryptPassword(password.value)
     await userStore.login({ username: username.value, password: encryptedPassword })
     router.push('/')
+  } catch {
+    // 错误已由 request 拦截器统一提示
   } finally {
     loading.value = false
   }

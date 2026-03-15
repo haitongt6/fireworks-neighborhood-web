@@ -250,8 +250,8 @@ async function submitForm() {
       }
       dialogVisible.value = false
       await fetchRoles()
-    } catch (e) {
-      ElMessage.error((e as Error).message || '操作失败')
+    } catch {
+      // 错误已由 request 拦截器统一提示
     } finally {
       submitLoading.value = false
     }

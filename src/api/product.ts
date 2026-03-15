@@ -10,7 +10,6 @@ export interface PmsProductListVO {
   price: number
   stock: number
   status: number
-  sort: number
   createTime?: string
   updateTime?: string
 }
@@ -42,8 +41,8 @@ export interface PmsProduct {
   mainVideo?: string
   detailPics?: string
   price: number
+  stock: number
   status: number
-  sort: number
   createTime?: string
   updateTime?: string
 }
@@ -52,12 +51,12 @@ export interface PmsProductAddParam {
   title: string
   subTitle?: string
   categoryId: number
-  images?: string
+  images: string
   mainVideo?: string
-  detailPics?: string
+  detailPics: string
   price: number
+  stock: number
   status?: number
-  sort?: number
 }
 
 export interface PmsProductUpdateParam {
@@ -68,8 +67,8 @@ export interface PmsProductUpdateParam {
   mainVideo?: string
   detailPics?: string
   price?: number
+  stock?: number
   status?: number
-  sort?: number
 }
 
 export function listProducts(params: PmsProductQueryParam) {

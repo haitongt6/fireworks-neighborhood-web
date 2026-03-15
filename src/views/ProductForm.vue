@@ -43,7 +43,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="space-y-2">
             <label class="block text-sm font-bold text-gray-700">所属分类 <span class="text-red-500">*</span></label>
             <select
@@ -58,12 +58,25 @@
           <div class="space-y-2">
             <label class="block text-sm font-bold text-gray-700">展示价（元） <span class="text-red-500">*</span></label>
             <input
-              v-model.number="form.price"
+              :value="form.price"
               type="number"
               required
               step="0.01"
-              min="0"
+              min="0.01"
               placeholder="如：59.90"
+              class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+              @input="onPriceInput"
+              @blur="onPriceBlur"
+            />
+          </div>
+          <div class="space-y-2">
+            <label class="block text-sm font-bold text-gray-700">库存 <span class="text-red-500">*</span></label>
+            <input
+              v-model.number="form.stock"
+              type="number"
+              required
+              min="0"
+              placeholder="0"
               class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
             />
           </div>
@@ -71,7 +84,7 @@
 
         <!-- 主图（5张）-->
         <div class="space-y-2">
-          <label class="block text-sm font-bold text-gray-700">主图（最多5张）</label>
+          <label class="block text-sm font-bold text-gray-700">主图（最多5张） <span class="text-red-500">*</span></label>
           <div class="flex flex-wrap gap-3">
             <div
               v-for="(url, idx) in mainImageList"
@@ -113,17 +126,33 @@
           <div class="flex items-center gap-4">
             <div
               v-if="form.mainVideo"
-              class="relative w-40 h-24 rounded-2xl border border-gray-200 bg-gray-900 overflow-hidden group"
+              class="relative w-64 h-36 rounded-2xl border border-gray-200 bg-gray-900 overflow-hidden group"
             >
-              <video :src="toFullUrl(form.mainVideo)" class="w-full h-full object-contain" muted preload="metadata" />
+              <video
+                :src="toFullUrl(form.mainVideo)"
+                class="w-full h-full object-contain"
+                controls
+                preload="metadata"
+                playsinline
+              />
               <p class="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs px-2 py-1 truncate">{{ getFileName(form.mainVideo) }}</p>
-              <button
-                type="button"
-                class="absolute top-1 right-1 w-6 h-6 rounded-full bg-red-500 text-white text-xs flex items-center justify-center opacity-0 group-hover:opacity-100"
-                @click="form.mainVideo = ''"
-              >
-                ×
-              </button>
+              <div class="absolute top-1 right-1 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button
+                  type="button"
+                  class="w-6 h-6 rounded-full bg-gray-800/90 text-white text-xs flex items-center justify-center hover:bg-gray-700"
+                  title="放大查看"
+                  @click.stop="showVideoModal = true"
+                >
+                  <Maximize2 :size="14" />
+                </button>
+                <button
+                  type="button"
+                  class="w-6 h-6 rounded-full bg-red-500 text-white text-xs flex items-center justify-center hover:bg-red-600"
+                  @click.stop="form.mainVideo = ''"
+                >
+                  ×
+                </button>
+              </div>
             </div>
             <div
               class="w-40 h-24 rounded-2xl border-2 border-dashed border-gray-200 flex flex-col items-center justify-center text-gray-400 hover:border-orange-400 hover:text-orange-500 cursor-pointer transition-colors"
@@ -138,7 +167,7 @@
 
         <!-- 详情图（5张）-->
         <div class="space-y-2">
-          <label class="block text-sm font-bold text-gray-700">详情图（最多5张）</label>
+          <label class="block text-sm font-bold text-gray-700">详情图（最多5张） <span class="text-red-500">*</span></label>
           <div class="flex flex-wrap gap-3">
             <div
               v-for="(url, idx) in detailImageList"
@@ -186,16 +215,6 @@
               <option :value="2">待上架</option>
             </select>
           </div>
-          <div class="space-y-2">
-            <label class="block text-sm font-bold text-gray-700">排序</label>
-            <input
-              v-model.number="form.sort"
-              type="number"
-              min="0"
-              placeholder="0"
-              class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
-            />
-          </div>
         </div>
 
         <div class="flex justify-end gap-3 pt-4 border-t border-gray-100">
@@ -216,14 +235,35 @@
         </div>
       </form>
     </div>
+
+    <!-- 视频全屏查看弹窗 -->
+    <ElDialog
+      v-model="showVideoModal"
+      title="主图视频"
+      width="80%"
+      :style="{ maxWidth: '900px' }"
+      destroy-on-close
+      @close="showVideoModal = false"
+    >
+      <div v-if="form.mainVideo" class="bg-black rounded-xl overflow-hidden">
+        <video
+          :src="toFullUrl(form.mainVideo)"
+          class="w-full aspect-video"
+          controls
+          autoplay
+          preload="auto"
+          playsinline
+        />
+      </div>
+    </ElDialog>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { ArrowLeft } from 'lucide-vue-next'
-import { ElMessage } from 'element-plus'
+import { ArrowLeft, Maximize2 } from 'lucide-vue-next'
+import { ElMessage, ElDialog } from 'element-plus'
 import { listCategories } from '@/api/category'
 import { getProduct, addProduct, updateProduct, type PmsProductAddParam, type PmsProductUpdateParam } from '@/api/product'
 import { uploadFile } from '@/api/file'
@@ -242,6 +282,7 @@ const videoFileInput = ref<HTMLInputElement>()
 const detailFileInput = ref<HTMLInputElement>()
 const pendingMainIndex = ref<number>(-1)
 const pendingDetailIndex = ref<number>(-1)
+const showVideoModal = ref(false)
 
 const form = reactive<Record<string, unknown>>({
   title: '',
@@ -251,8 +292,8 @@ const form = reactive<Record<string, unknown>>({
   mainVideo: '',
   detailPics: '',
   price: 0,
-  status: 1,
-  sort: 0
+  stock: 0,
+  status: 1
 })
 
 function parseUrls(s?: string): string[] {
@@ -311,6 +352,30 @@ function getFileName(url: string): string {
   }
 }
 
+/** 价格输入：限制只能输入到两位小数 */
+function onPriceInput(e: Event) {
+  const input = e.target as HTMLInputElement
+  const val = input.value
+  if (val === '' || val === '-') {
+    form.price = 0
+    return
+  }
+  const m = val.match(/^\d*\.?\d{0,2}/)
+  const fixed = m ? m[0] : ''
+  if (fixed !== val) {
+    input.value = fixed
+  }
+  const num = parseFloat(fixed)
+  form.price = isNaN(num) ? 0 : num
+}
+
+/** 价格失焦：统一为两位小数 */
+function onPriceBlur() {
+  if (typeof form.price === 'number' && !isNaN(form.price)) {
+    form.price = Math.round(form.price * 100) / 100
+  }
+}
+
 function triggerMainUpload() {
   pendingMainIndex.value = mainImageList.value.findIndex((u) => !u)
   if (pendingMainIndex.value < 0) pendingMainIndex.value = mainImageList.value.length - 1
@@ -345,6 +410,11 @@ function onMainImageChange(e: Event, idx: number) {
 
 function removeMainImage(idx: number) {
   const list = [...mainImageList.value]
+  const filled = list.filter(Boolean)
+  if (filled.length <= 1) {
+    ElMessage.warning('主图至少保留一张')
+    return
+  }
   list[idx] = ''
   form.images = joinUrls(list.filter(Boolean))
 }
@@ -395,6 +465,11 @@ function onDetailImageChange(e: Event, idx: number) {
 
 function removeDetailImage(idx: number) {
   const list = [...detailImageList.value]
+  const filled = list.filter(Boolean)
+  if (filled.length <= 1) {
+    ElMessage.warning('详情图至少保留一张')
+    return
+  }
   list[idx] = ''
   form.detailPics = joinUrls(list.filter(Boolean))
 }
@@ -429,8 +504,8 @@ async function loadProduct() {
     form.mainVideo = p.mainVideo ?? ''
     form.detailPics = p.detailPics ?? ''
     form.price = p.price
+    form.stock = p.stock ?? 0
     form.status = p.status ?? 1
-    form.sort = p.sort ?? 0
   } catch (e) {
     ElMessage.error((e as Error).message || '加载商品失败')
     goBack()
@@ -451,6 +526,21 @@ async function submit() {
     ElMessage.warning('请输入有效价格')
     return
   }
+  const stock = Number(form.stock)
+  if (form.stock == null || form.stock === '' || isNaN(stock) || stock < 0) {
+    ElMessage.warning('库存必填且必须大于等于0')
+    return
+  }
+  const mainUrls = parseUrls(form.images as string).filter(Boolean)
+  if (mainUrls.length === 0) {
+    ElMessage.warning('主图至少保留一张')
+    return
+  }
+  const detailUrls = parseUrls(form.detailPics as string).filter(Boolean)
+  if (detailUrls.length === 0) {
+    ElMessage.warning('详情图至少保留一张')
+    return
+  }
   submitLoading.value = true
   try {
     if (isEdit.value && productId.value) {
@@ -458,12 +548,12 @@ async function submit() {
         title: String(form.title).trim(),
         subTitle: form.subTitle ? String(form.subTitle).trim() : undefined,
         categoryId: Number(form.categoryId),
-        images: form.images ? String(form.images).trim() || undefined : undefined,
-        mainVideo: form.mainVideo ? String(form.mainVideo).trim() || undefined : undefined,
-        detailPics: form.detailPics ? String(form.detailPics).trim() || undefined : undefined,
+        images: String(form.images ?? '').trim(),
+        mainVideo: form.mainVideo ? String(form.mainVideo).trim() : '',
+        detailPics: String(form.detailPics ?? '').trim(),
         price: price,
-        status: Number(form.status),
-        sort: Number(form.sort) || 0
+        stock: Number(form.stock),
+        status: Number(form.status)
       }
       await updateProduct(productId.value, param)
       ElMessage.success('编辑成功')
@@ -472,19 +562,19 @@ async function submit() {
         title: String(form.title).trim(),
         subTitle: form.subTitle ? String(form.subTitle).trim() : undefined,
         categoryId: Number(form.categoryId),
-        images: form.images ? String(form.images).trim() || undefined : undefined,
-        mainVideo: form.mainVideo ? String(form.mainVideo).trim() || undefined : undefined,
-        detailPics: form.detailPics ? String(form.detailPics).trim() || undefined : undefined,
+        images: String(form.images ?? '').trim(),
+        mainVideo: form.mainVideo ? String(form.mainVideo).trim() : undefined,
+        detailPics: String(form.detailPics ?? '').trim(),
         price: price,
-        status: Number(form.status) ?? 1,
-        sort: Number(form.sort) || 0
+        stock: Number(form.stock),
+        status: Number(form.status) ?? 1
       }
       await addProduct(param)
       ElMessage.success('新增成功')
     }
     router.push('/products')
-  } catch (e) {
-    ElMessage.error((e as Error).message || '操作失败')
+  } catch {
+    // 错误已由 request 拦截器统一提示
   } finally {
     submitLoading.value = false
   }

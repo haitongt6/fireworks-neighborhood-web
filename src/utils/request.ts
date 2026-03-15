@@ -21,12 +21,14 @@ service.interceptors.response.use(
   (response) => {
     const res = response.data
     if (res.code !== 200) {
-      ElMessage.error(res.message || '请求失败')
+      // 401 不弹窗，直接跳转登录
       if (res.code === 401) {
         localStorage.removeItem('token')
         localStorage.removeItem('tokenHead')
         localStorage.removeItem('user_info')
         window.location.href = '/login?msg=' + encodeURIComponent('您的登录已失效，请联系管理员')
+      } else {
+        ElMessage.error(res.message || '请求失败')
       }
       return Promise.reject(new Error(res.message || '请求失败'))
     }
@@ -40,8 +42,9 @@ service.interceptors.response.use(
       window.location.href = '/login?msg=' + encodeURIComponent('您的登录已失效，请联系管理员')
       return Promise.reject(error)
     }
-    ElMessage.error(error.response?.data?.message || '网络异常，请稍后重试')
-    return Promise.reject(error)
+    const msg = error.response?.data?.message || '网络异常，请稍后重试'
+    ElMessage.error(msg)
+    return Promise.reject(new Error(msg))
   }
 )
 

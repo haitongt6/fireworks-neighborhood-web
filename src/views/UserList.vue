@@ -219,7 +219,7 @@ async function handleDelete(user: UmsAdminWithRoles) {
     await fetchUsers()
   } catch (e) {
     if ((e as string) !== 'cancel') {
-      ElMessage.error((e as Error).message || '删除失败')
+      // 错误已由 request 拦截器统一提示
     }
   }
 }
@@ -286,8 +286,8 @@ async function submitForm() {
       }
       dialogVisible.value = false
       await fetchUsers()
-    } catch (e) {
-      ElMessage.error((e as Error).message || '操作失败')
+    } catch {
+      // 错误已由 request 拦截器统一提示
     } finally {
       submitLoading.value = false
     }

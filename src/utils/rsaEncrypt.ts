@@ -1,17 +1,13 @@
 import { JSEncrypt } from 'jsencrypt'
 import { getPublicKey } from '@/api/login'
 
-let cachedPublicKey: string | null = null
-
 /**
- * 获取公钥（带缓存，避免重复请求）
+ * 获取公钥。每次加密前都重新请求，避免后端重启后密钥对更换导致解密失败。
  */
 async function fetchPublicKey(): Promise<string> {
-  if (cachedPublicKey) return cachedPublicKey
   const res = await getPublicKey()
   const key = res.data?.publicKey
   if (!key) throw new Error('获取公钥失败')
-  cachedPublicKey = key
   return key
 }
 
