@@ -6,12 +6,12 @@
         <label class="block text-xs font-bold text-gray-400 uppercase mb-2">订单搜索</label>
         <div class="relative">
           <Search class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" :size="16" />
-          <input type="text" placeholder="订单号/手机号/姓名" class="w-full pl-10 pr-4 py-2 bg-gray-50 border-none rounded-xl text-sm focus:ring-2 focus:ring-orange-500/20" />
+          <input type="text" placeholder="订单号/手机号/姓名" class="w-full pl-10 pr-4 py-2 bg-gray-50 border-none rounded-xl text-sm focus:ring-2 focus:ring-emerald-500/20" />
         </div>
       </div>
       <div class="w-48">
         <label class="block text-xs font-bold text-gray-400 uppercase mb-2">订单状态</label>
-        <select class="w-full bg-gray-50 border-none rounded-xl text-sm px-4 py-2 focus:ring-2 focus:ring-orange-500/20">
+        <select class="w-full bg-gray-50 border-none rounded-xl text-sm px-4 py-2 focus:ring-2 focus:ring-emerald-500/20">
           <option>全部状态</option>
           <option>待支付</option>
           <option>待发货</option>
@@ -22,7 +22,7 @@
       </div>
       <div class="w-48">
         <label class="block text-xs font-bold text-gray-400 uppercase mb-2">下单时间</label>
-        <select class="w-full bg-gray-50 border-none rounded-xl text-sm px-4 py-2 focus:ring-2 focus:ring-orange-500/20">
+        <select class="w-full bg-gray-50 border-none rounded-xl text-sm px-4 py-2 focus:ring-2 focus:ring-emerald-500/20">
           <option>今天</option>
           <option>最近3天</option>
           <option>最近7天</option>
@@ -93,7 +93,7 @@
                 </span>
               </td>
               <td class="px-8 py-5 text-right">
-                <button class="text-sm font-bold text-orange-600 hover:text-orange-700">详情</button>
+                <button class="text-sm font-bold text-emerald-600 hover:text-emerald-700">详情</button>
               </td>
             </tr>
           </tbody>
@@ -173,7 +173,7 @@ const getStatusClass = (status: string) => {
   switch (status) {
     case '已完成': return 'bg-green-50 text-green-600'
     case '待发货': return 'bg-blue-50 text-blue-600'
-    case '配送中': return 'bg-orange-50 text-orange-600'
+    case '配送中': return 'bg-emerald-50 text-emerald-600'
     case '待提货': return 'bg-purple-50 text-purple-600'
     case '待支付': return 'bg-gray-100 text-gray-500'
     default: return 'bg-gray-100 text-gray-500'

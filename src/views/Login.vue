@@ -9,7 +9,7 @@
         referrerPolicy="no-referrer"
       />
       <!-- Gradient overlay to match the brand colors -->
-      <div class="absolute inset-0 bg-gradient-to-br from-orange-500/50 to-red-600/80 mix-blend-multiply"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/60 to-teal-600/80 mix-blend-multiply"></div>
       
       <div class="relative z-10 flex flex-col justify-center px-16 text-white w-full">
         <div class="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-8 shadow-2xl border border-white/30">
@@ -17,8 +17,8 @@
         </div>
         <h1 class="text-5xl font-bold mb-6 leading-tight">烟火邻里<br/>同城配送服务</h1>
         <p class="text-lg text-white/90 max-w-md leading-relaxed font-medium">
-          致力于同城配送，点对点服务用户。<br/>
-          让每一份温暖，都能准时送达邻里之间。
+          同城配送 · 鲜活到家<br/>
+          新鲜实惠，每日精选源头好货，品质保证
         </p>
       </div>
     </div>
@@ -27,11 +27,11 @@
     <div class="w-full lg:w-1/2 flex items-center justify-center bg-gray-50 px-8 sm:px-16">
       <div class="w-full max-w-md space-y-8">
         <div class="text-center lg:text-left">
-          <div class="lg:hidden w-12 h-12 bg-gradient-to-br from-orange-400 to-red-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-red-200 mx-auto mb-6">
+          <div class="lg:hidden w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-emerald-500/30 mx-auto mb-6">
             <Send :size="24" class="transform translate-x-0.5 -translate-y-0.5" />
           </div>
           <h2 class="text-3xl font-bold text-gray-900 tracking-tight">欢迎回来</h2>
-          <p class="text-sm text-gray-500 mt-2">请输入您的账号和密码登录管理系统</p>
+          <p class="text-sm text-gray-500 mt-2">烟火邻里管理后台 · 新鲜实惠，每天为您精选源头好货</p>
         </div>
 
         <form class="mt-8 space-y-6" @submit.prevent="handleLogin">
@@ -46,7 +46,7 @@
                   v-model="username"
                   type="text" 
                   required
-                  class="block w-full pl-11 pr-4 py-3.5 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all bg-white shadow-sm"
+                  class="block w-full pl-11 pr-4 py-3.5 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all bg-white shadow-sm"
                   placeholder="请输入用户名 (如: admin)"
                 />
               </div>
@@ -62,7 +62,7 @@
                   v-model="password"
                   type="password" 
                   required
-                  class="block w-full pl-11 pr-4 py-3.5 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all bg-white shadow-sm"
+                  class="block w-full pl-11 pr-4 py-3.5 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all bg-white shadow-sm"
                   placeholder="请输入密码"
                 />
               </div>
@@ -71,20 +71,20 @@
 
           <div class="flex items-center justify-between">
             <div class="flex items-center">
-              <input id="remember-me" type="checkbox" class="h-4 w-4 text-orange-500 focus:ring-orange-500 border-gray-300 rounded cursor-pointer">
+              <input id="remember-me" type="checkbox" class="h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-gray-300 rounded cursor-pointer">
               <label for="remember-me" class="ml-2 block text-sm text-gray-600 cursor-pointer">
                 记住我
               </label>
             </div>
             <div class="text-sm">
-              <a href="#" class="font-bold text-orange-600 hover:text-orange-500 transition-colors">忘记密码？</a>
+              <a href="#" class="font-bold text-emerald-600 hover:text-emerald-700 transition-colors">忘记密码？</a>
             </div>
           </div>
 
           <button 
             type="submit"
             :disabled="loading"
-            class="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-2xl shadow-lg shadow-orange-200/50 text-sm font-bold text-white bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-all transform hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+            class="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-2xl shadow-lg shadow-emerald-500/30 text-sm font-bold text-white bg-emerald-500 hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-all transform hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
           >
             {{ loading ? '登录中...' : '登 录' }}
           </button>

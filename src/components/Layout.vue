@@ -3,7 +3,7 @@
     <!-- Sidebar -->
     <aside class="w-64 bg-white border-r border-gray-200 flex flex-col">
       <div class="p-6 flex items-center gap-3 border-b border-gray-100">
-        <div class="w-10 h-10 bg-gradient-to-br from-orange-400 to-red-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-red-200">
+        <div class="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-emerald-500/30">
           <Send :size="22" class="transform translate-x-0.5 -translate-y-0.5" />
         </div>
         <div>
@@ -26,8 +26,8 @@
 
       <div class="p-4 border-t border-gray-100">
         <div class="bg-gray-50 rounded-2xl p-4 flex items-center gap-3">
-          <button
-            class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-sm hover:bg-orange-200 transition-colors flex-shrink-0"
+            <button
+            class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold text-sm hover:bg-emerald-200 transition-colors flex-shrink-0"
             @click="openProfileDialog"
           >
             {{ avatarText }}
@@ -96,7 +96,7 @@
             <input 
               type="text" 
               placeholder="搜索功能或订单..." 
-              class="pl-10 pr-4 py-2 bg-gray-100 border-none rounded-full text-sm focus:ring-2 focus:ring-orange-500/20 transition-all w-64"
+              class="pl-10 pr-4 py-2 bg-gray-100 border-none rounded-full text-sm focus:ring-2 focus:ring-emerald-500/20 transition-all w-64"
             />
           </div>
           <button class="relative p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors">

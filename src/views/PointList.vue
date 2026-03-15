@@ -2,7 +2,7 @@
   <div class="space-y-6">
     <div class="flex items-center justify-between">
       <h2 class="text-xl font-bold text-gray-900">自提点管理</h2>
-      <button class="bg-orange-500 text-white px-6 py-2.5 rounded-2xl font-bold hover:bg-orange-600 transition-all shadow-lg shadow-orange-200 flex items-center gap-2">
+      <button class="bg-emerald-500 text-white px-6 py-2.5 rounded-2xl font-bold hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-500/30 flex items-center gap-2">
         <Plus :size="20" />
         <span>新增自提点</span>
       </button>
@@ -11,7 +11,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div v-for="point in points" :key="point.id" class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all group">
         <div class="flex items-start justify-between mb-4">
-          <div class="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-600">
+          <div class="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600">
             <MapPin :size="24" />
           </div>
           <span :class="`px-3 py-1 rounded-full text-xs font-bold ${point.status === '营业中' ? 'bg-green-50 text-green-600' : 'bg-gray-100 text-gray-500'}`">
@@ -36,10 +36,10 @@
             <div class="w-px h-8 bg-gray-100"></div>
             <div class="text-center">
               <p class="text-xs text-gray-400">待提货</p>
-              <p class="text-sm font-bold text-orange-600">{{ point.pendingPickups }}</p>
+              <p class="text-sm font-bold text-emerald-600">{{ point.pendingPickups }}</p>
             </div>
           </div>
-          <button class="p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-xl transition-all">
+          <button class="p-2 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-xl transition-all">
             <ChevronRight :size="20" />
           </button>
         </div>

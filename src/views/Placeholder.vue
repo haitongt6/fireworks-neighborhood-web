@@ -5,7 +5,7 @@
     </div>
     <h3 class="text-xl font-bold text-gray-600">功能开发中</h3>
     <p class="text-sm">该模块正在加紧建设中，敬请期待...</p>
-    <button @click="$router.push('/')" class="px-6 py-2 bg-orange-500 text-white rounded-xl font-bold hover:bg-orange-600 transition-all">
+    <button @click="$router.push('/')" class="px-6 py-2 bg-emerald-500 text-white rounded-xl font-bold hover:bg-emerald-600 transition-all">
       返回仪表盘
     </button>
   </div>

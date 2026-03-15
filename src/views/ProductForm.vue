@@ -28,7 +28,7 @@
               required
               maxlength="200"
               placeholder="如：新鲜红富士苹果 5kg 礼盒装"
-              class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+              class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
             />
           </div>
           <div class="space-y-2">
@@ -38,7 +38,7 @@
               type="text"
               maxlength="300"
               placeholder="如：顺丰包邮"
-              class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+              class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
             />
           </div>
         </div>
@@ -49,7 +49,7 @@
             <select
               v-model.number="form.categoryId"
               required
-              class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+              class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
             >
               <option :value="undefined" disabled>请选择分类</option>
               <option v-for="cat in categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
@@ -64,7 +64,7 @@
               step="0.01"
               min="0.01"
               placeholder="如：59.90"
-              class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+              class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
               @input="onPriceInput"
               @blur="onPriceBlur"
             />
@@ -77,7 +77,7 @@
               required
               min="0"
               placeholder="0"
-              class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+              class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
             />
           </div>
         </div>
@@ -111,7 +111,7 @@
             </div>
             <div
               v-if="mainImageList.filter(Boolean).length < 5"
-              class="w-24 h-24 rounded-2xl border-2 border-dashed border-gray-200 flex items-center justify-center text-gray-400 hover:border-orange-400 hover:text-orange-500 cursor-pointer transition-colors"
+              class="w-24 h-24 rounded-2xl border-2 border-dashed border-gray-200 flex items-center justify-center text-gray-400 hover:border-emerald-400 hover:text-emerald-500 cursor-pointer transition-colors"
               @click="triggerMainUpload"
             >
               <span class="text-2xl">+</span>
@@ -155,7 +155,7 @@
               </div>
             </div>
             <div
-              class="w-40 h-24 rounded-2xl border-2 border-dashed border-gray-200 flex flex-col items-center justify-center text-gray-400 hover:border-orange-400 hover:text-orange-500 cursor-pointer transition-colors"
+              class="w-40 h-24 rounded-2xl border-2 border-dashed border-gray-200 flex flex-col items-center justify-center text-gray-400 hover:border-emerald-400 hover:text-emerald-500 cursor-pointer transition-colors"
               @click="triggerVideoUpload"
             >
               <span class="text-2xl">+</span>
@@ -194,7 +194,7 @@
             </div>
             <div
               v-if="detailImageList.filter(Boolean).length < 5"
-              class="w-24 h-24 rounded-2xl border-2 border-dashed border-gray-200 flex items-center justify-center text-gray-400 hover:border-orange-400 hover:text-orange-500 cursor-pointer transition-colors"
+              class="w-24 h-24 rounded-2xl border-2 border-dashed border-gray-200 flex items-center justify-center text-gray-400 hover:border-emerald-400 hover:text-emerald-500 cursor-pointer transition-colors"
               @click="triggerDetailUpload"
             >
               <span class="text-2xl">+</span>
@@ -208,7 +208,7 @@
             <label class="block text-sm font-bold text-gray-700">状态</label>
             <select
               v-model.number="form.status"
-              class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+              class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
             >
               <option :value="1">上架</option>
               <option :value="0">下架</option>
@@ -228,7 +228,7 @@
           <button
             type="submit"
             :disabled="submitLoading"
-            class="px-6 py-2.5 rounded-2xl text-sm font-bold bg-orange-500 text-white hover:bg-orange-600 transition-all shadow-lg shadow-orange-200 disabled:opacity-60 disabled:cursor-not-allowed"
+            class="px-6 py-2.5 rounded-2xl text-sm font-bold bg-emerald-500 text-white hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-500/30 disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {{ submitLoading ? '提交中...' : '保存' }}
           </button>

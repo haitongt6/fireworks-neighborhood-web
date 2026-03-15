@@ -8,7 +8,7 @@
             v-model.number="query.productId"
             type="number"
             placeholder="商品ID"
-            class="w-28 px-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-orange-500/20 shadow-sm"
+            class="w-28 px-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-emerald-500/20 shadow-sm"
           />
           <div class="relative flex items-center">
             <Search class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" :size="18" />
@@ -16,7 +16,7 @@
               v-model="query.keyword"
               type="text"
               placeholder="搜索商品名称..."
-              class="pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-orange-500/20 transition-all w-64 shadow-sm"
+              class="pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-emerald-500/20 transition-all w-64 shadow-sm"
               @keyup.enter="fetchProducts"
             />
           </div>
@@ -26,7 +26,7 @@
               type="number"
               step="0.01"
               placeholder="最低价"
-              class="w-24 px-3 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-orange-500/20 shadow-sm"
+              class="w-24 px-3 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-emerald-500/20 shadow-sm"
             />
             <span class="text-gray-400">-</span>
             <input
@@ -34,7 +34,7 @@
               type="number"
               step="0.01"
               placeholder="最高价"
-              class="w-24 px-3 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-orange-500/20 shadow-sm"
+              class="w-24 px-3 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-emerald-500/20 shadow-sm"
             />
           </div>
           <div class="flex items-center gap-2">
@@ -43,7 +43,7 @@
                 v-model="query.createTimeStart"
                 type="date"
                 :max="query.createTimeEnd || undefined"
-                class="px-3 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-orange-500/20 shadow-sm"
+                class="px-3 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-emerald-500/20 shadow-sm"
                 @change="onTimeStartChange"
               />
               <span class="text-gray-400">至</span>
@@ -51,7 +51,7 @@
                 v-model="query.createTimeEnd"
                 type="date"
                 :min="query.createTimeStart || undefined"
-                class="px-3 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-orange-500/20 shadow-sm"
+                class="px-3 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-emerald-500/20 shadow-sm"
                 @change="onTimeEndChange"
               />
             </div>
@@ -87,7 +87,7 @@
           </button>
           <select
             v-model="query.categoryId"
-            class="bg-white border border-gray-200 rounded-2xl text-sm px-4 py-2.5 focus:ring-2 focus:ring-orange-500/20 shadow-sm"
+            class="bg-white border border-gray-200 rounded-2xl text-sm px-4 py-2.5 focus:ring-2 focus:ring-emerald-500/20 shadow-sm"
             @change="fetchProducts"
           >
             <option :value="undefined">所有分类</option>
@@ -97,7 +97,7 @@
         <router-link
           v-if="userStore.hasPermission('pms:product:add')"
           to="/products/add"
-          class="flex items-center justify-center gap-2 bg-orange-500 text-white px-6 py-2.5 rounded-2xl font-bold hover:bg-orange-600 transition-all shadow-lg shadow-orange-200"
+          class="flex items-center justify-center gap-2 bg-emerald-500 text-white px-6 py-2.5 rounded-2xl font-bold hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-500/30"
         >
           <Plus :size="20" />
           <span>新增商品</span>
@@ -197,7 +197,7 @@
             v-for="p in pageNumbers"
             :key="p"
             class="w-10 h-10 rounded-xl font-bold shadow-md"
-            :class="p === query.pageNum ? 'bg-orange-500 text-white shadow-orange-200' : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'"
+            :class="p === query.pageNum ? 'bg-emerald-500 text-white shadow-emerald-500/30' : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'"
             @click="goPage(p)"
           >
             {{ p }}

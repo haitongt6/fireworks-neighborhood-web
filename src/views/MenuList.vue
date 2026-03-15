@@ -7,12 +7,12 @@
           v-model="keyword"
           type="text"
           placeholder="搜索菜单或按钮名称..."
-          class="pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-orange-500/20 transition-all w-80 shadow-sm"
+          class="pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-emerald-500/20 transition-all w-80 shadow-sm"
         />
       </div>
       <button
         v-if="userStore.hasPermission('ums:button:add')"
-        class="flex items-center justify-center gap-2 bg-orange-500 text-white px-6 py-2.5 rounded-2xl font-bold hover:bg-orange-600 transition-all shadow-lg shadow-orange-200"
+        class="flex items-center justify-center gap-2 bg-emerald-500 text-white px-6 py-2.5 rounded-2xl font-bold hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-500/30"
         @click="openAddRootDialog"
       >
         <Plus :size="20" />
@@ -45,7 +45,7 @@
                 >
                   <button
                     v-if="hasChildren(item.id)"
-                    class="p-0.5 text-gray-400 hover:text-orange-600 rounded transition-colors"
+                    class="p-0.5 text-gray-400 hover:text-emerald-600 rounded transition-colors"
                     @click="toggleExpand(item.id)"
                   >
                     <ChevronRight v-if="!expandedIds.has(item.id)" :size="18" />
@@ -62,7 +62,7 @@
                   :class="{
                     'bg-gray-100 text-gray-600': item.type === 0,
                     'bg-blue-50 text-blue-600': item.type === 1,
-                    'bg-orange-50 text-orange-600': item.type === 2
+                    'bg-emerald-50 text-emerald-600': item.type === 2
                   }"
                 >
                   {{ typeLabel[item.type] }}
@@ -74,7 +74,7 @@
               <td class="px-8 py-5 text-right">
                 <button
                   v-if="item.type === 1 && userStore.hasPermission('ums:button:add')"
-                  class="p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-xl transition-all"
+                  class="p-2 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-xl transition-all"
                   title="添加按钮"
                   @click="openAddButton(item)"
                 >

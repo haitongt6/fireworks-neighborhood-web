@@ -25,7 +25,7 @@
             <h3 class="text-lg font-bold text-gray-900">销售趋势</h3>
             <p class="text-sm text-gray-500">最近7天的销售额统计</p>
           </div>
-          <select class="bg-gray-50 border-none rounded-xl text-sm px-4 py-2 focus:ring-2 focus:ring-orange-500/20">
+          <select class="bg-gray-50 border-none rounded-xl text-sm px-4 py-2 focus:ring-2 focus:ring-emerald-500/20">
             <option>最近7天</option>
             <option>最近30天</option>
           </select>
@@ -34,7 +34,7 @@
         <div class="h-64 flex items-end justify-between gap-4 px-4">
           <div v-for="(val, i) in [45, 60, 35, 80, 55, 90, 75]" :key="i" class="flex-1 flex flex-col items-center gap-3">
             <div 
-              class="w-full bg-orange-500 rounded-t-xl transition-all duration-500 hover:bg-orange-600 cursor-pointer relative group"
+              class="w-full bg-emerald-500 rounded-t-xl transition-all duration-500 hover:bg-emerald-600 cursor-pointer relative group"
               :style="{ height: `${val}%` }"
             >
               <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
@@ -64,7 +64,7 @@
             </div>
           </div>
         </div>
-        <button class="w-full mt-8 py-3 text-sm font-bold text-orange-600 bg-orange-50 rounded-2xl hover:bg-orange-100 transition-colors">
+        <button class="w-full mt-8 py-3 text-sm font-bold text-emerald-600 bg-emerald-50 rounded-2xl hover:bg-emerald-100 transition-colors">
           查看全部商品
         </button>
       </div>
@@ -74,7 +74,7 @@
     <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
       <div class="p-8 border-b border-gray-50 flex items-center justify-between">
         <h3 class="text-lg font-bold text-gray-900">最近订单</h3>
-        <button class="text-sm font-bold text-orange-600 hover:underline">查看所有订单</button>
+        <button class="text-sm font-bold text-emerald-600 hover:underline">查看所有订单</button>
       </div>
       <div class="overflow-x-auto">
         <table class="w-full text-left">
@@ -93,7 +93,7 @@
               <td class="px-8 py-5 text-sm font-bold text-gray-900">#{{ order.id }}</td>
               <td class="px-8 py-5">
                 <div class="flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-xs font-bold text-orange-600">
+                  <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-xs font-bold text-emerald-600">
                     {{ order.customer.charAt(0) }}
                   </div>
                   <span class="text-sm font-medium text-gray-700">{{ order.customer }}</span>
@@ -107,7 +107,7 @@
                 </span>
               </td>
               <td class="px-8 py-5 text-right">
-                <button class="p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-all">
+                <button class="p-2 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all">
                   <MoreHorizontal :size="18" />
                 </button>
               </td>
@@ -129,7 +129,7 @@ import {
 } from 'lucide-vue-next'
 
 const stats = [
-  { title: '总销售额', value: '¥128,430', icon: CreditCard, trend: 12.5, bgClass: 'bg-orange-100', textClass: 'text-orange-600' },
+  { title: '总销售额', value: '¥128,430', icon: CreditCard, trend: 12.5, bgClass: 'bg-emerald-100', textClass: 'text-emerald-600' },
   { title: '今日订单', value: '1,240', icon: ShoppingBag, trend: 8.2, bgClass: 'bg-blue-100', textClass: 'text-blue-600' },
   { title: '新增用户', value: '452', icon: Users, trend: -2.4, bgClass: 'bg-purple-100', textClass: 'text-purple-600' },
   { title: '转化率', value: '3.2%', icon: TrendingUp, trend: 4.1, bgClass: 'bg-green-100', textClass: 'text-green-600' },
@@ -154,7 +154,7 @@ const getStatusClass = (status: string) => {
   switch (status) {
     case '已完成': return 'bg-green-50 text-green-600'
     case '待发货': return 'bg-blue-50 text-blue-600'
-    case '配送中': return 'bg-orange-50 text-orange-600'
+    case '配送中': return 'bg-emerald-50 text-emerald-600'
     case '待支付': return 'bg-gray-100 text-gray-500'
     default: return 'bg-gray-100 text-gray-500'
   }

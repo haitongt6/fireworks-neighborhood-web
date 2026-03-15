@@ -34,10 +34,10 @@
     v-else
     :to="item.path"
     class="flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-200 group"
-    :class="[currentPath === item.path ? 'bg-orange-50 text-orange-600 font-semibold shadow-sm' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900']"
+    :class="[currentPath === item.path ? 'bg-emerald-50 text-emerald-600 font-semibold shadow-sm' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900']"
     :style="{ paddingLeft: `${8 + depth * 12 + 16}px` }"
   >
-    <component :is="item.icon" :size="depth === 0 ? 20 : 18" :class="[currentPath === item.path ? 'text-orange-500' : 'text-gray-400 group-hover:text-gray-600']" />
+    <component :is="item.icon" :size="depth === 0 ? 20 : 18" :class="[currentPath === item.path ? 'text-emerald-500' : 'text-gray-400 group-hover:text-gray-600']" />
     <span :class="depth === 0 ? '' : 'text-sm'">{{ item.name }}</span>
   </router-link>
 </template>
