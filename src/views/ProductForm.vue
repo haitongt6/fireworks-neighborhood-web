@@ -393,7 +393,7 @@ function onMainFileSelect(e: Event) {
     if (idx >= 0) list[idx] = url
     else list[list.length - 1] = url
     form.images = joinUrls(list.filter(Boolean))
-  })
+  }).catch(() => {})
 }
 
 function onMainImageChange(e: Event, idx: number) {
@@ -405,7 +405,7 @@ function onMainImageChange(e: Event, idx: number) {
     const list = [...mainImageList.value]
     list[idx] = url
     form.images = joinUrls(list.filter(Boolean))
-  })
+  }).catch(() => {})
 }
 
 function removeMainImage(idx: number) {
@@ -430,7 +430,7 @@ function onVideoSelect(e: Event) {
   if (!file) return
   doUpload(file, 'video').then((url) => {
     form.mainVideo = url
-  })
+  }).catch(() => {})
 }
 
 function triggerDetailUpload() {
@@ -448,7 +448,7 @@ function onDetailFileSelect(e: Event) {
     if (idx >= 0) list[idx] = url
     else list[list.length - 1] = url
     form.detailPics = joinUrls(list.filter(Boolean))
-  })
+  }).catch(() => {})
 }
 
 function onDetailImageChange(e: Event, idx: number) {
@@ -460,7 +460,7 @@ function onDetailImageChange(e: Event, idx: number) {
     const list = [...detailImageList.value]
     list[idx] = url
     form.detailPics = joinUrls(list.filter(Boolean))
-  })
+  }).catch(() => {})
 }
 
 function removeDetailImage(idx: number) {
@@ -474,7 +474,13 @@ function removeDetailImage(idx: number) {
   form.detailPics = joinUrls(list.filter(Boolean))
 }
 
+const MAX_UPLOAD_SIZE_MB = 10
+
 async function doUpload(file: File, category: 'main' | 'video' | 'desc'): Promise<string> {
+  if (file.size > MAX_UPLOAD_SIZE_MB * 1024 * 1024) {
+    ElMessage.error(`上传文件大小不能超过 ${MAX_UPLOAD_SIZE_MB}MB`)
+    throw new Error(`上传文件大小不能超过 ${MAX_UPLOAD_SIZE_MB}MB`)
+  }
   uploadLoading.value = true
   try {
     const res = await uploadFile(file, category)
